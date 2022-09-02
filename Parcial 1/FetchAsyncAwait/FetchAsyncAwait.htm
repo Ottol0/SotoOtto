@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta Api</title>
+</head>
+<body>
+    <button id="HacerFetch" > Peticion</button>
+    <img id="imagen" width="50%">
+    <script>
+        document.getElementById("HacerFetch").addEventListener("click", async function(){
+            let dato = await hacerPeticion();
+            console.log(dato)
+            document.getElementById('imagen').src=dato.url
+        
+        });
+        async function hacerPeticion(){
+                let respuesta = await fetch("https://api.waifu.pics/sfw/kick");
+                let datajson = await respuesta.json();
+                return datajson;
+            }
+    </script>
+</body>
+</html>
