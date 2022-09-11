@@ -1,0 +1,7 @@
+{
+    "Jugador":{
+        "99" :{"Nombre": "Donald", "Posicion": "Defensa"},
+        "85" :{"Nombre": "George", "Posicion": "TE"},
+        "19" :{"Nombre": "Deebo", "Posicion": "WR"}
+    }
+}
