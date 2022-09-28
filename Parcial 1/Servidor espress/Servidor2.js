@@ -5,6 +5,7 @@ const app = express()
 const morgan = require('morgan');
 const fs = require('fs');
 const path = require('path')
+const cadena = require('./cadena')
 app.use(express.text())
 app.use(express.json())
 
@@ -31,6 +32,15 @@ app.get('/', (req,res)=> {
     res.sendFile('/static/index.html',{root:__dirname})
 })
 
+app.post('/texto', (req,res)=>{
+  console.log(req.body)
+  let may = cadena.pasarMayusculas(req.body);
+  let sinesp = cadena.quitarEspacios(req.body);
+  let longi = cadena.obtenerLongitud(req.body);
+  res.json({mayusculas: may,
+    sinespacios: sinesp,
+    longitud: longi })
+})
 
 app.post('/json', (req, res)=> {
     console.log(req.body.nombre)
