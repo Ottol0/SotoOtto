@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ModuloESM</title>
+</head>
+<body>
+    <label for="cadena">  Cadena  </label>
+    <input id="cadena" type="text">
+    <button id="btn"> Mayusculas</button>
+    <button id="btn2"> Espacios </button>
+
+    <label for="resul">  Resutado  </label>
+    <input id="resul" type="text">
+
+    <script type="module">
+        //import{pasarMayusculas} from './cadenaesm.js'
+         import * as funciones from './cadenaesm.js'
+        
+        document.getElementById("btn").addEventListener("click",function(){
+            let cad=document.getElementById("cadena").value;
+            let cadmay = funciones.pasarMayusculas(cad);
+            console.log(cadmay)
+
+            document.getElementById("resul").value=cadmay
+        })
+        document.getElementById("btn2").addEventListener("click",function(){
+            let cad=document.getElementById("cadena").value;
+            let cadSinEspa = funciones.quitarEspacios(cad);
+            console.log(cadSinEspa)
+
+            document.getElementById("resul").value=cadSinEspa
+        })
+    </script>
+</body>
+</html>
