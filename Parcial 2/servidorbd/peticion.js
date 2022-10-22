@@ -31,5 +31,10 @@ app.get('/',(req,res) => {
     })
 })
 
+//Post
+
+//Delete
+
+//Put Patch
 app.listen(8081,()=>{console.log('Funciona')})
   
