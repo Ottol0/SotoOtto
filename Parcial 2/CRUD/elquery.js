@@ -1,12 +1,15 @@
 const express = require('express');
 const sql = require("mysql2");
-
+const cors = require("cors")
 const app = express()
+const{ json, response } = require('express')
+
 
 app.use(express.text())
 app.use(express.json())
+app.use(cors({origin:'*'}))
 
-const{ json, response } = require('express')
+
 
 var pool = sql.createPool({
     host:'localhost',
@@ -17,8 +20,14 @@ var pool = sql.createPool({
 
 
 app.get('/',(req,res) => {
-    miQuery = 'SELECT * FROM personasxd WHERE id =' +req.body
-    pool.query(miQuery, function(err,result,fields){
+    if(req.body.id == undefined){
+        iQuery = 'SELECT * FROM personasxd'
+    }
+    else{
+        iQuery = 'SELECT * FROM personasxd WHERE id =' +req.body.id
+    }
+    
+    pool.query(iQuery, function(err,result,fields){
         res.send(JSON.stringify(result))
     })
 
