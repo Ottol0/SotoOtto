@@ -1,0 +1,1 @@
+(()=>{"use strict";console.log("Hello Word Webpack"),console.log(2*2)})();
