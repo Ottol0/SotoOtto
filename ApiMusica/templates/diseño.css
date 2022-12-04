@@ -1,0 +1,118 @@
+body{
+  background-size: 50%;
+  background-image:url("https://i.pinimg.com/564x/21/0b/25/210b2548a5d1385d5cb26d6d7398ba60.jpg");
+}
+#music{
+ size: center; 
+}
+
+#titulo{
+  background-image:url("https://i.pinimg.com/564x/66/aa/cf/66aacf0a0daa1f31d2c54092c4cd2ca4.jpg");
+	font-family: monospace;
+  text-align: center;
+	letter-spacing: 2px;
+  width: 600px;
+	font-size: 1em;
+}
+#titulo h1{
+	font-family: monospace;
+  padding: 0.5em 1.9em;
+	letter-spacing: 2px;
+	font-size: 1.5em;
+  color:#1d1717;
+}
+
+#container{
+	text-align: center;
+	border-radius: 5px;
+	margin: 3em auto;
+	background: rgba(255, 255, 255, 0.95);
+	height: 620px;
+  font-family: monospace;
+  font-size: 1.5em;
+	width: 480px;
+	padding: 1em;
+  display:flex;
+  flex-direction: column;
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	left: 40%;
+	top: 0;	
+}
+#container input {
+/* 	background: rgba(255, 13, 254, 0.90); */
+	width: 84%;
+	display: inline-block;
+	text-align: center;
+	border-radius: 7px;
+	background: #eee;
+	padding: 1em 2em;
+	outline: none;
+	border: none;
+	color: #222;
+	transition: 0.3s linear;
+  height:fit-content;
+}
+#container button {
+	background-color:#5880df;
+	font-family: monospace;
+	padding: 0.5em 1.9em;
+	margin: .6em 0 0 0;
+	border-radius: 7px;
+	cursor: pointer;
+	font-size: 1em;
+	outline: none;
+	border: none;
+	transition: 0.3s linear;
+}
+#container h2 {
+	background: url("https://i.pinimg.com/564x/21/0b/25/210b2548a5d1385d5cb26d6d7398ba60.jpg");
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+	font-family: monospace;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size:cover;
+	letter-spacing: 2px;
+	font-size: 3.5em;
+	margin: 0;
+}
+
+#cita {
+    overflow:hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+    height: 30vh;
+    width: 50vh;
+    background: linear-gradient(to right, rgba(36,31,31,1) 0%, rgba(36,31,31,1) 32%,         
+    rgba(74,71,70,1) 100%);
+    color: #fff;
+    text-align: center;
+}
+
+#cita p{
+  font-family:cursive;
+  font-size: 1.1em;
+}
+
+
+#cmbCanciones{
+  appearance: none;
+    padding: 0.5em 1.9em;
+    border:none;
+    border-radius: 10px;
+    font-family: monospace;
+    text-align: center;
+    cursor: pointer;
+    background-color:#5880df;
+    color: #000000;
+    font-size: 20px;
+    margin: .6em 0 0 0;
+}
+select:focus {
+    outline: none;
+}

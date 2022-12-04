@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="./diseño.css">
+    
+    <title>API Musica</title>
+  </head>
+  <body>
+    <div id="titulo" style="" class="container">
+      <h1>Tu recomendacion musical</h1>
+    </div>
+    <iframe id="music" style="border-radius:12px" src="" width="50%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+    
+    <div id=cita>
+      <p id=texto></p>
+    </div>
+      <select id="cmbCanciones" name="select">
+      </select>
+    <div id="container">
+      <h2>Insertar</h2>
+      
+      <label for="POST-artista">Artista:</label>
+      <input id="POST-artista" type="text" name="artista">
+      
+      <label for="POST-cancion">Cancion:</label>
+      <input id=POST-cancion type="text" name="cancion">
+      
+      <label for="POST-album">Album:</label>
+      <input id="POST-album" type="text" name="album">
+      
+      <label for="POST-cita">Cita Musical:</label>
+      <input id="POST-cita" type="text" name="cita">
+      
+      <label for="POST-URL">Vinculo de la cancion:</label>
+      <input id="POST-URL" type="text" name="vinculo">
+      
+      <button id="btn" type="submit"> Agregar </button>
+      <button id="btn2" type="submit"> Consultar </button>
+      <button id="btn3" type="submit"> Eliminar </button>
+      <button id="btn4" type="submit"> Actualizar </button>
+    </div>
+  </body>
+</html>
+<script>
+
+  window.addEventListener("load", async function(event) {
+
+    let canciones = await fetch("https://apimusica2.ottol0.repl.co/canciones")
+
+    let result = await canciones.json()
+
+ 
+
+    for (let x of result) {
+      let can = document.createElement('option')
+      can.textContent = x.cancion
+      document.getElementById("cmbCanciones").appendChild(can)
+    }  
+  });
+
+  document.getElementById("cmbCanciones").addEventListener("change", async function () {
+    e = document.getElementById("cmbCanciones");
+    var value = e.value;
+    cancione = e.options[e.selectedIndex].text;
+
+    document.getElementById("POST-cancion").value = cancione
+
+    let headersList = {
+     "Content-Type": "application/json"
+    }
+    
+    let bodyContent = JSON.stringify({
+      "cancion":cancione
+    });
+    
+    let response = await fetch("https://ApiMusica2.ottol0.repl.co/consult", { 
+      method: "POST",
+      body: bodyContent,
+      headers: headersList
+    });
+    
+    let data3 = await response.json();
+    
+    document.getElementById("POST-cita").value = data3[0].citamusical
+  })
+
+
+  
+  document.getElementById("btn").addEventListener("click",async function () {
+
+    urlne = document.getElementById("POST-URL").value
+    
+    let headersList = {
+     "Content-Type": "application/json"
+    }
+    
+    let bodyContent1 = JSON.stringify({
+      "url":urlne
+    });
+    
+    let response1 = await fetch("https://apimusica2.ottol0.repl.co/embed", { 
+      method: "POST",
+      body: bodyContent1,
+      headers: headersList
+    });
+
+    let data1 = await response1.json();
+    console.log(data1);
+    url = data1.embed
+
+    document.getElementById("music").src = data1.embed
+
+    artista = document.getElementById("POST-artista").value
+    cancion = document.getElementById("POST-cancion").value
+    album = document.getElementById("POST-album").value
+    cita = document.getElementById("POST-cita").value
+    
+    let bodyContent = JSON.stringify({
+      "artista":artista,
+      "cancion":cancion,
+      "album":album,
+      "cita":cita,
+      "url":url
+    });
+    
+    let response = await fetch("https://ApiMusica2.ottol0.repl.co/create", { 
+      method: "POST",
+      body: bodyContent,
+      headers: headersList
+    });
+
+    let data = await response.text();
+    alert (`La cancion ${cancion} se a creado`);   
+  })
+
+  document.getElementById("btn2").addEventListener("click", async function () {
+    console.log("se viene")
+    cancion = document.getElementById("POST-cancion").value
+
+    let headersList = {
+     "Content-Type": "application/json"
+    }
+    
+    let bodyContent = JSON.stringify({
+      "cancion":cancion
+    });
+    
+    let response = await fetch("https://ApiMusica2.ottol0.repl.co/consult", { 
+      method: "POST",
+      body: bodyContent,
+      headers: headersList
+    });
+    
+    let data2 = await response.json();
+
+    console.log(data2[0])
+
+    document.getElementById("texto").innerHTML = data2[0].citamusical
+    document.getElementById("music").src = data2[0].dondeescucharla
+    
+  })
+
+  document.getElementById("btn3").addEventListener("click", async function () {
+
+    if (cancione == "") {
+      document.getElementById("POST-cancion").value = "Escoja una cancion"
+      return
+    }
+    
+    let headersList = {
+     "Content-Type": "application/json"
+    }
+    
+    let bodyContent = JSON.stringify({
+      "cancion":cancione
+    });
+    
+    let response = await fetch("https://ApiMusica2.ottol0.repl.co/eliminar", { 
+      method: "DELETE",
+      body: bodyContent,
+      headers: headersList
+    });
+
+    alert("Cancion borrada con exito")
+    
+  })
+  
+  document.getElementById("btn4").addEventListener("click", async function () {
+    newcita = document.getElementById("POST-cita").value
+
+    if (newcita == "" || newcita == " ") {
+      document.getElementById("POST-cita").value = ""
+       alert ("Espacio de cita invalido");   
+      return
+    }
+
+    let headersList = {
+     "Content-Type": "application/json"
+    }
+    
+    console.log(cancione)
+    let bodyContent1 = JSON.stringify({
+      "cita": newcita,
+      "cancion":cancione
+    });
+    
+    let response = await fetch("https://ApiMusica2.ottol0.repl.co/actualizar", { 
+      method: "PATCH",
+      body: bodyContent1,
+      headers: headersList
+    });
+    document.getElementById("POST-cita").value = ""
+    alert (`La cancion ${cancione} se a actualizado`);   
+  })
+  
+</script>
