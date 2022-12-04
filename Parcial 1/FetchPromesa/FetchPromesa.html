@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="FetchCss.css">
+    <title>Consulta Api</title>
+</head>
+<body>
+    
+    <button id="HacerFetch" > Peticion</button>
+    <img id="imagen" width="50%">
+    <script>
+        document.getElementById('HacerFetch').addEventListener('click', function(){
+            hacerPeticion();
+        
+        });
+        
+        function hacerPeticion(){
+                fetch("https://api.waifu.pics/sfw/happy")
+                .then(respuesta => respuesta.json())
+                .then(datos => document.getElementById('imagen').src=datos.url)
+            }
+    </script>
+</body>
+</html>
