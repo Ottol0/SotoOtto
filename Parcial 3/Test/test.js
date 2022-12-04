@@ -3,7 +3,7 @@ let   chaiHttp = require('chai-http');
 const expect   = require('chai').expect;
 chai.use(chaiHttp);const url= 'http://localhost:8081';// Encapsular en test dentro de la funcion describe() Y describirmos el test
 describe('Inserta una persona: ',()=>{                       
-    it('deberia insertar una persona', (done) => {       // En la funcion it() lo que deberia hacer
+    it('deberia insertar una persona', (done) => {       
               chai.request(url)
                        .post('/')                       
                        .send({ nombre:"Luis", apellido:"Soto" })                       
