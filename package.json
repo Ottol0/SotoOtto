@@ -4,7 +4,8 @@
   "description": "Every new repl comes with a `.replit` and a `replit.nix` file that let you configure your repl to do just about anything in any language!",
   "main": "server.js",
   "scripts": {
-    "test": "node ./node_modules/mocha/bin/mocha"
+    "test": "node ./node_modules/mocha/bin/mocha",
+    "start": "node ApiMusica/server.js"
   },
   "author": "",
   "license": "ISC",
@@ -16,7 +17,9 @@
     "nodemon": "^2.0.20",
     "postgres": "^3.3.2",
     "spotify-url-info": "^3.1.9",
-    "swagger": "^0.7.5"
+    "swagger": "^0.7.5",
+    "swagger-jsdoc": "^6.2.5",
+    "swagger-ui-express": "^4.6.0"
   },
   "devDependencies": {
     "chai": "^4.3.7",
